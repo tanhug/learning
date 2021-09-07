@@ -27,4 +27,13 @@ public class Body {
 		mass = b.mass;
 		imgFileName = b.imgFileName;
 	}
+
+	/** calculates the distance between two Bodys */
+	public double calcDistance(Body b) {
+		double dx2, dy2, r;
+		dx2 = Math.pow(xxPos - b.xxPos, 2);
+		dy2 = Math.pow(yyPos - b.yyPos, 2);
+		r = Math.sqrt(dx2 + dy2);
+		return r;
+	}
 }
