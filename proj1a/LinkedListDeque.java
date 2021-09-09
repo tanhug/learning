@@ -1,3 +1,4 @@
+
 public class LinkedListDeque<Clown> {
     private Node sentinel;
     private int size;
