@@ -1,4 +1,3 @@
-
 public class LinkedListDeque<T> {
     private Node sentinel;
     private int size;
@@ -30,15 +29,15 @@ public class LinkedListDeque<T> {
     }
 
     /** Creates a deep copy of other. */
-    public LinkedListDeque(LinkedListDeque other) {
-        size = 0;
-        sentinel = new Node();
-        sentinel.next = sentinel;
-        sentinel.prev = sentinel;
-        for (int i = 0; i < other.size(); i++) {
-            addLast((T) other.get(i));
-        }
-    }
+//    public LinkedListDeque(LinkedListDeque other) {
+//        size = 0;
+//        sentinel = new Node();
+//        sentinel.next = sentinel;
+//        sentinel.prev = sentinel;
+//        for (int i = 0; i < other.size(); i++) {
+//            addLast((T) other.get(i));
+//        }
+//    }
 
     /** Adds an item of type T to the front of the deque. */
     public void addFirst(T item) {
@@ -143,5 +142,3 @@ public class LinkedListDeque<T> {
     }
 
 }
-
-

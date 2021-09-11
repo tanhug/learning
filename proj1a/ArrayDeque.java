@@ -26,16 +26,16 @@ public class ArrayDeque<T> {
         size = 0;
     }
 
-    /** Creates a deep copy of other.*/
-    public ArrayDeque(ArrayDeque other) {
-        items = (T[]) new Object[other.size()];
-        nextFirst = 0;
-        nextLast = 1;
-        size = 0;
-        for (int i = 0; i < other.size(); i++) {
-            addLast((T) other.get(i));
-        }
-    }
+//    /** Creates a deep copy of other.*/
+//    public ArrayDeque(ArrayDeque other) {
+//        items = (T[]) new Object[other.size()];
+//        nextFirst = 0;
+//        nextLast = 1;
+//        size = 0;
+//        for (int i = 0; i < other.size(); i++) {
+//            addLast((T) other.get(i));
+//        }
+//    }
 
     /** Adds an item of type T to the front of the deque. */
     public void addFirst(T item) {
