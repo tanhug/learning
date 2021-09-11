@@ -20,7 +20,7 @@ public class LinkedListDeque<T> {
         }
     }
 
-    /** a constructor of empty LinkedListDeque */
+    /** A constructor of empty LinkedListDeque */
     public LinkedListDeque() {
         sentinel = new Node();
         sentinel.next = sentinel;
@@ -128,17 +128,22 @@ public class LinkedListDeque<T> {
         return p.item;
     }
 
-    /** Gets the item at the given index.(a recursive version) */
-    public T getRecursive(int index) {
-        if (size == 0 && size <= index) {
-            return null;
-        }
-        Node p = sentinel.next;
+    /** a private method for helping the implementation of getRecursive() */
+    private T getRecursive(int index, Node p) {
         if (index == 0) {
             return p.item;
         }
         p = p.next;
-        return getRecursive(index - 1);
+        return getRecursive(index - 1, p);
+    }
+
+    /** Gets the item at the given index.(a recursive version) */
+    public T getRecursive(int index) {
+        if (size == 0 || size <= index || index < 0) {
+            return null;
+        }
+        Node p = sentinel.next;
+        return getRecursive(index, p);
     }
 
 }
