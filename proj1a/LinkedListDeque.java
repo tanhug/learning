@@ -1,15 +1,15 @@
 
-public class LinkedListDeque<Clown> {
+public class LinkedListDeque<T> {
     private Node sentinel;
     private int size;
 
     private class Node {
         Node prev;
         Node next;
-        Clown item;
+        T item;
 
         /** a constructor of a Node */
-        public Node(Clown i, Node p, Node n) {
+        public Node(T i, Node p, Node n) {
             prev = p;
             next = n;
             item = i;
@@ -36,12 +36,12 @@ public class LinkedListDeque<Clown> {
         sentinel.next = sentinel;
         sentinel.prev = sentinel;
         for (int i = 0; i < other.size(); i++) {
-            addLast((Clown) other.get(i));
+            addLast((T) other.get(i));
         }
     }
 
-    /** Adds an item of type Clown to the front of the deque. */
-    public void addFirst(Clown item) {
+    /** Adds an item of type T to the front of the deque. */
+    public void addFirst(T item) {
         if (item == null) {
             return;
         }
@@ -52,8 +52,8 @@ public class LinkedListDeque<Clown> {
         sentinel.next = newOne;
     }
 
-    /** Adds an item of type Clown to the back of the deque. */
-    public void addLast(Clown item) {
+    /** Adds an item of type T to the back of the deque. */
+    public void addLast(T item) {
         if (item == null) {
             return;
         }
@@ -94,7 +94,7 @@ public class LinkedListDeque<Clown> {
     }
 
     /** Removes and returns the item at the front of the deque. */
-    public Clown removeFirst() {
+    public T removeFirst() {
         if (size == 0) {
             return null;
         }
@@ -106,7 +106,7 @@ public class LinkedListDeque<Clown> {
     }
 
     /** Removes and returns the item at the back of the deque. */
-    public Clown removeLast() {
+    public T removeLast() {
         if (size == 0) {
             return null;
         }
@@ -118,7 +118,7 @@ public class LinkedListDeque<Clown> {
     }
 
     /** Gets the item at the given index. */
-    public Clown get(int index) {
+    public T get(int index) {
         if (size == 0 || size <= index || index < 0) {
             return null;
         }
@@ -130,7 +130,7 @@ public class LinkedListDeque<Clown> {
     }
 
     /** Gets the item at the given index.(a recursive version) */
-    public Clown getRecursive(int index) {
+    public T getRecursive(int index) {
         if (size == 0 && size <= index) {
             return null;
         }
