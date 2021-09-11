@@ -29,6 +29,17 @@ public class LinkedListDeque<Clown> {
         size = 0;
     }
 
+    /** Creates a deep copy of other. */
+    public LinkedListDeque(LinkedListDeque other) {
+        size = 0;
+        sentinel = new Node();
+        sentinel.next = sentinel;
+        sentinel.prev = sentinel;
+        for (int i = 0; i < other.size(); i++) {
+            addLast((Clown) other.get(i));
+        }
+    }
+
     /** Adds an item of type Clown to the front of the deque. */
     public void addFirst(Clown item) {
         if (item == null) {
@@ -108,7 +119,7 @@ public class LinkedListDeque<Clown> {
 
     /** Gets the item at the given index. */
     public Clown get(int index) {
-        if (size == 0 && size <= index) {
+        if (size == 0 || size <= index || index < 0) {
             return null;
         }
         Node p = sentinel.next;
@@ -118,4 +129,19 @@ public class LinkedListDeque<Clown> {
         return p.item;
     }
 
+    /** Gets the item at the given index.(a recursive version) */
+    public Clown getRecursive(int index) {
+        if (size == 0 && size <= index) {
+            return null;
+        }
+        Node p = sentinel.next;
+        if (index == 0) {
+            return p.item;
+        }
+        p = p.next;
+        return getRecursive(index - 1);
+    }
+
 }
+
+
