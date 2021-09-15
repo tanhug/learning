@@ -24,8 +24,7 @@ public class Palindrome {
         }
         char[] c = word.toCharArray();
         if (cc.equalChars(c[0], c[c.length - 1])) {
-            CharacterComparator ccc = new OffByOne();
-            return isPalindrome(word.substring(1, word.length() - 1), ccc);
+            return isPalindrome(word.substring(1, word.length() - 1), cc);
         }
         return false;
     }
