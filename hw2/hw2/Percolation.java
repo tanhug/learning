@@ -3,7 +3,8 @@ package hw2;
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 public class Percolation {
-    private WeightedQuickUnionUF uf;
+    private WeightedQuickUnionUF uf1;
+    private WeightedQuickUnionUF uf2;
     private int[][] grid;
     private int N;
     private int numOfOpen;
@@ -26,7 +27,9 @@ public class Percolation {
         }
 
         numOfOpen = 0;
-        uf = new WeightedQuickUnionUF(N * N + 2);
+        uf1 = new WeightedQuickUnionUF(N * N + 2);
+        uf2 = new WeightedQuickUnionUF(N * N + 1);
+
         this.N = N;
         TOP = N * N;
         BOTTOM = N * N + 1;
@@ -49,9 +52,12 @@ public class Percolation {
         }
 
         if (row == 0) {
-            uf.union(transformIndex(row, col), TOP);
-        } else if (row == N - 1) {
-            uf.union(transformIndex(row, col), BOTTOM);
+            uf1.union(transformIndex(row, col), TOP);
+            uf2.union(transformIndex(row, col), TOP);
+        }
+
+        if (row == N - 1) {
+            uf1.union(transformIndex(row, col), BOTTOM);
         }
 
         if (grid[row][col] == BLOCK) {
@@ -61,25 +67,29 @@ public class Percolation {
 
         if (row - 1 >= 0) {
             if (isOpen(row - 1, col)) {
-                uf.union(transformIndex(row - 1, col), transformIndex(row, col));
+                uf1.union(transformIndex(row - 1, col), transformIndex(row, col));
+                uf2.union(transformIndex(row - 1, col), transformIndex(row, col));
             }
         }
 
         if (row + 1 < N) {
             if (isOpen(row + 1, col)) {
-                uf.union(transformIndex(row + 1, col), transformIndex(row, col));
+                uf1.union(transformIndex(row + 1, col), transformIndex(row, col));
+                uf2.union(transformIndex(row + 1, col), transformIndex(row, col));
             }
         }
 
         if (col - 1 >= 0) {
             if (isOpen(row, col - 1)) {
-                uf.union(transformIndex(row, col - 1), transformIndex(row, col));
+                uf1.union(transformIndex(row, col - 1), transformIndex(row, col));
+                uf2.union(transformIndex(row, col - 1), transformIndex(row, col));
             }
         }
 
         if (col + 1 < N) {
             if (isOpen(row, col + 1)) {
-                uf.union(transformIndex(row, col + 1), transformIndex(row, col));
+                uf1.union(transformIndex(row, col + 1), transformIndex(row, col));
+                uf2.union(transformIndex(row, col + 1), transformIndex(row, col));
             }
         }
     }
@@ -109,7 +119,7 @@ public class Percolation {
      * @return true or false
      */
     public boolean isFull(int row, int col) {
-        return uf.find(transformIndex(row, col)) == uf.find(TOP);
+        return uf2.find(transformIndex(row, col)) == uf2.find(TOP);
     }
 
     /**
@@ -125,7 +135,7 @@ public class Percolation {
      * @return true or false
      */
     public boolean percolates() {
-        return uf.find(TOP) == uf.find(BOTTOM);
+        return uf1.find(TOP) == uf1.find(BOTTOM);
     }
 
     public static void main(String[] args) {
