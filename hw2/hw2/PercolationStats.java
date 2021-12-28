@@ -1,7 +1,6 @@
 package hw2;
 
 import edu.princeton.cs.algs4.StdRandom;
-import edu.princeton.cs.algs4.StdStats;
 
 public class PercolationStats {
     private Percolation perc;
@@ -41,7 +40,11 @@ public class PercolationStats {
      * @return mean
      */
     public double mean() {
-        return StdStats.mean(x);
+        double mean = 0;
+        for (int i = 0; i < x.length; i++) {
+            mean += x[i] / x.length;
+        }
+        return mean;
     }
 
     /**
@@ -49,7 +52,11 @@ public class PercolationStats {
      * @return stddev
      */
     public double stddev() {
-        return StdStats.stddev(x);
+        double var = 0;
+        for (int i = 0; i < x.length; i++) {
+            var += Math.pow(x[i] - mean(), 2) / (x.length - 1);
+        }
+        return Math.sqrt(var);
     }
 
     /**
@@ -68,14 +75,4 @@ public class PercolationStats {
         return mean() + 1.96 * stddev() / Math.sqrt(x.length);
     }
 
-    public static void main(String[] args) {
-        PercolationFactory pf = new PercolationFactory();
-        PercolationStats ps = new PercolationStats(100, 20, pf);
-
-        System.out.println(ps.mean());
-        System.out.println(ps.stddev());
-        System.out.println(ps.confidenceHigh());
-        System.out.println(ps.confidenceLow());
-
-    }
 }
