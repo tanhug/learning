@@ -199,23 +199,4 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
     public Iterator<K> iterator() {
         return keySet().iterator();
     }
-
-    public static void main(String[] args) {
-        BSTMap<String, Integer> b = new BSTMap<String, Integer>();
-        b.put("hi5", 1);
-        b.put("hi3", 1);
-        b.put("hi7", 1);
-        b.put("hi1", 1);
-        b.put("hi4", 1);
-        b.put("hi6", 1);
-        b.put("hi9", 1);
-        int v = b.remove("hi5");
-        b.remove("hi6");
-        b.remove("hi10");
-        b.remove("hi3");
-        b.remove("hi1");
-        b.remove("hi7");
-        b.remove("hi9");
-        b.remove("hi4");
-    }
 }
