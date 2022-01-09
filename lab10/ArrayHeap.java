@@ -219,8 +219,7 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
         for (int i = 1; i <= size; i++) {
             if (contents[i].myItem.equals(item)) {
                 index = i;
-            } else {
-                return;
+                break;
             }
         }
         double originP = contents[index].myPriority;
