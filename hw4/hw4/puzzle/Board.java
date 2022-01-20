@@ -2,7 +2,7 @@ package hw4.puzzle;
 
 import edu.princeton.cs.algs4.Queue;
 
-public class Board implements WorldState{
+public class Board implements WorldState {
     private int[][] board;
     private int N;
     private static final int BLANK = 0;
@@ -77,7 +77,10 @@ public class Board implements WorldState{
     public int hamming() {
         int errors = 0;
         for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N - 1; j++) {
+            for (int j = 0; j < N; j++) {
+                if (board[i][j] == BLANK) {
+                    continue;
+                }
                 if (board[i][j] != N * i + j + 1) {
                     errors += 1;
                 }
@@ -108,8 +111,7 @@ public class Board implements WorldState{
       * Gradescope. */
     @Override
     public int estimatedDistanceToGoal() {
-        if (estiDis == -1)
-        {
+        if (estiDis == -1) {
             estiDis = manhattan();
         }
         return estiDis;
@@ -141,6 +143,12 @@ public class Board implements WorldState{
         }
 
         return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = board != null ? board.hashCode() : 0;
+        return result;
     }
 
     /** Returns the string representation of the board.

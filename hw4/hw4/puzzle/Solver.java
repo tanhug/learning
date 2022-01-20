@@ -22,7 +22,8 @@ public class Solver {
         MinPQ<WorldState> movePQ = new MinPQ<>(1, new Comparator<WorldState>() {
             @Override
             public int compare(WorldState o1, WorldState o2) {
-                return disTo.get(o1) + o1.estimatedDistanceToGoal() - disTo.get(o2) - o2.estimatedDistanceToGoal();
+                return disTo.get(o1) + o1.estimatedDistanceToGoal()
+                        - disTo.get(o2) - o2.estimatedDistanceToGoal();
             }
         });
 
